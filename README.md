@@ -60,11 +60,11 @@ Create an `.env` file or configure your IDE run profile with the following varia
 | `REDIS_HOST` | `localhost` | Redis server hostname. |
 | `REDIS_PORT` | `6379` | Redis server port. |
 | `REDIS_PASSWORD` | *(Empty)* | Redis server authentication password. |
-| `SURGE_TOKEN_SECRET`| `default-surge-token-shared-secret-key-32-bytes-long` | Cryptographic secret for signing surge pricing tokens. |
-| `JWT_SECRET` | `default-secret-key-change-in-production-must-be-at-least-256-bits-long-for-hs256` | Secret for signing JWT authentication tokens. |
+| `SURGE_TOKEN_SECRET`| `<YOUR_32_BYTE_SURGE_TOKEN_SECRET>` | Cryptographic secret for signing surge pricing tokens. |
+| `JWT_SECRET` | `<YOUR_JWT_SECRET_MIN_256_BITS>` | Secret for signing JWT authentication tokens. |
 | `JWT_EXPIRATION` | `86400000` | JWT token validity in milliseconds (24 hours). |
 | `ADMIN_EMAIL` | `admin@fooddelivery.com` | Primary admin bootstrap email. |
-| `ADMIN_PASSWORD` | `Admin@123` | Primary admin bootstrap password. |
+| `ADMIN_PASSWORD` | `<YOUR_CHOSEN_ADMIN_PASSWORD>` | Primary admin bootstrap password. |
 | `ADMIN_NAME` | `System Admin` | Primary admin profile name. |
 
 ---
@@ -179,8 +179,8 @@ mvn spring-boot:run
 
 The system automatically bootstraps an administrator account on startup:
 
-* **Email**: `admin@fooddelivery.com`
-* **Password**: `Admin@123`
+* **Email**: `admin@fooddelivery.com` (configurable via `ADMIN_EMAIL`)
+* **Password**: `<YOUR_CHOSEN_ADMIN_PASSWORD>` (configurable via `ADMIN_PASSWORD`)
 * **Role**: `ADMIN`
 
 Use these credentials to retrieve the JWT Bearer token for accessing admin and vendor-protected endpoints.
