@@ -1,7 +1,5 @@
 package com.fooddelivery.config.security;
 
-import com.fooddelivery.auth.security.JwtAuthenticationEntryPoint;
-import com.fooddelivery.auth.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,6 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.fooddelivery.auth.security.JwtAuthenticationEntryPoint;
+import com.fooddelivery.auth.security.JwtAuthenticationFilter;
 
 /**
  * Spring Security configuration.
@@ -46,6 +47,7 @@ public class SecurityConfig {
                     .requestMatchers("/api/delivery/**").hasAnyRole("DELIVERY_PARTNER", "ADMIN")
                     .requestMatchers("/api/orders/**", "/api/vendor/orders/**").authenticated()
                     .requestMatchers("/api/notifications/**", "/api/tracking/**").authenticated()
+                    .requestMatchers("/healthz").permitAll()
                     .anyRequest().authenticated()
             )
             .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
