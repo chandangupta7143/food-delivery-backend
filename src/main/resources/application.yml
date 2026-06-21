@@ -25,4 +25,4 @@ admin:
   name: ${ADMIN_NAME:System Admin}
 
 server:
-  port: ${SERVER_PORT:8082}
+  port: ${PORT:${SERVER_PORT:8082}}
