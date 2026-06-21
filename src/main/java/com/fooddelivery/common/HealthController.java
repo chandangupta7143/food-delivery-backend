@@ -1,16 +1,19 @@
 package com.fooddelivery.common;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Collections;
 import java.util.Map;
 
 @RestController
 public class HealthController {
 
+    @GetMapping("/")
+    public String root() {
+        return "Food Delivery Backend Running";
+    }
+
     @GetMapping("/healthz")
-    public ResponseEntity<Map<String, String>> healthCheck() {
-        return ResponseEntity.ok(Collections.singletonMap("status", "UP"));
+    public Map<String, String> health() {
+        return Map.of("status", "UP");
     }
 }
