@@ -30,7 +30,7 @@ public class SurgeTelemetryIngestionWorker {
     }
 
     // Runs every 10 minutes (600,000 milliseconds)
-    @Scheduled(fixedRate = 600000)
+    @Scheduled(fixedRate = 600000, initialDelay = 10000)
     public void ingestEnvironmentalSignals() {
         LOGGER.info("Starting background weather and traffic signal ingestion worker");
 

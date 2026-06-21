@@ -104,7 +104,7 @@ public class AssignmentEngine {
      * Background scheduler to clean up timed-out offers.
      * Runs every 5 seconds.
      */
-    @Scheduled(fixedDelay = 5000)
+    @Scheduled(fixedDelay = 5000, initialDelay = 10000)
     public void checkForTimeouts() {
         LocalDateTime cutoff = LocalDateTime.now().minusSeconds(timeoutSeconds);
 
@@ -153,7 +153,7 @@ public class AssignmentEngine {
      * Background scheduler to retry matching unassigned orders.
      * Runs every 15 seconds.
      */
-    @Scheduled(fixedDelay = 15000)
+    @Scheduled(fixedDelay = 15000, initialDelay = 15000)
     public void assignUnassignedOrders() {
         List<Order> unassignedOrders = orderRepository.findByStatus(OrderStatus.READY_FOR_PICKUP).stream()
                 .filter(order -> order.getDeliveryPartnerId() == null && order.getAssignmentAttempts() < maxAttempts)
